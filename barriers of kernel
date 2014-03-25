@@ -11,7 +11,7 @@ There are many
 	
 	that is to say read and write can't across the barrier.
 
-	read_barrier_depends() are not as strict as rmb(), but it at least ensure the read below this barrier can't be executed before the one it depends which is above the barrier.
+	read_barrier_depends() is not as strict as rmb(), but it at least ensures the read below this barrier can't be executed before the one it depends which is above the barrier.
 
 2. some barriers relate to SMP 
 	smp_rmb(), smp_wmb(), smp_mb(), smp_read_barrier_depends()
