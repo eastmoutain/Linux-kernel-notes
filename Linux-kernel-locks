@@ -103,3 +103,37 @@ The most important of these are summarized here:
 	void write_unlock_irq(rwlock_t *lock);
 	void write_unlock_bh(rwlock_t *lock);
 	Functions for releasing write access to a reader/writer spinlock.
+5. wait queue
+	
+	/* 
+	* This section is written by dongshan, maybe it is not correct, just according to my own understanding of
+	* wait queue
+	*/
+	
+	A wait queue is used for muti threads synchronisition. It can put a thread into sleep untill the condition
+	is met, or it received a signal or timeout. Normally, one or more threads are waitting for a condition.
+	
+	There are two ways to declare a wait queue, satically or dynamically.
+	
+	static DECLARE_WAIT_QUEUE_HEAD(wq);	// statically declare a wait queue.
+	
+	wait_queue_head_t wq;	// dynamiclly decalare a wait queue
+	init_wait_queue(&wq);
+	
+	// four macros implete to put threads into sleep
+	wait_event(wq, condition);
+	wait_event_interruptible(wq, condition);
+	wait_event_timeout(wq, condition, timeout);
+	wait_event_interruptible_timeout(wq, condition, timeout);
+	
+	These four macros will put threads into wait queue and sleep untill the condition becomes ture, or
+	timeout meets. if the sleeping thread is intterupted by receiving signals, it returns a nonzero value;
+	If timeout meets, it return a value 0 regardless of how the condition evaluates.
+	
+	// to wake up threads which are waitting on the wait queue
+	void wake_up(wait_queue_head_t *wq);
+	void wake_up_interruptible(wait_queue_head_t *wq);
+	
+	
+	
+	
