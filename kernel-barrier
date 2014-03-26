@@ -1,8 +1,9 @@
 Linux kernel barriers
 
-There are many
- barriers in Linux kernel to implete ordered read or write operations, to ensure the code is not reordered by compiler or the processor itself, so barriers are applied to kernel.
+There are many barriers in Linux kernel to implete ordered read or write operations, to ensure the code is not reordered by compiler or the processor itself, so barriers are applied to kernel.
+
 1. mb(), rmb(), wmb(), read_barrier_depends()
+	
 	mb() is a combination of rmb() and wmb(), it ensures orders of read and write.
 	
 	rmb() ensures that the read prior to rmb() should be completed before rmb(), and read after should not take place before rmb();
