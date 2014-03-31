@@ -120,6 +120,12 @@ The most important of these are summarized here:
 	wait_queue_head_t wq;	// dynamiclly decalare a wait queue
 	init_wait_queue(&wq);
 	
+	//after initialising a wait queue, then add some wait event onto the queue.
+	void fastcall add_wait_queue(wait_queue_head_t * wqh, wait_queue_t *wait);
+	
+	// here, remove this wait queue from wait queue list
+	void fastcall remove_wait_queue(wait_queue_head_t *wqh, wait_queue_t *wait);
+	
 	// four macros implete to put threads into sleep
 	wait_event(wq, condition);
 	wait_event_interruptible(wq, condition);
@@ -134,6 +140,8 @@ The most important of these are summarized here:
 	void wake_up(wait_queue_head_t *wq);
 	void wake_up_interruptible(wait_queue_head_t *wq);
 	
-	
+	// sleep on the wait queue.
+	sleep_on(wait_queue_t *q); // define a wait queue, then the current task goes to sleep uninterruptible.
+	interruptbible_sleep_on(wait_queue_head_t *q); // set current task go to sleep, however it can be wake up by interrupt.
 	
 	
