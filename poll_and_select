@@ -1,0 +1,5 @@
+1. select
+    int select(int maxfd+1, fd_set *rfd, fd_set *wfd, fd_set *exceptionfd, timeval* timeout)
+    
+2. poll
+    
